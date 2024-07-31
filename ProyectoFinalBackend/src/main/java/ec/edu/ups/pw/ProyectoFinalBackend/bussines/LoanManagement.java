@@ -40,6 +40,11 @@ public class LoanManagement {
             throw new RuntimeException("El libro o el usuario no existen.");
         }
 
+        // Verificar si el libro está disponible
+        if (!book.getAvailability().equals("available")) {
+            throw new RuntimeException("El libro no está disponible para préstamo.");
+        }
+
         // Actualizar disponibilidad del libro
         book.setAvailability("loaned");
         this.bookDAO.update(book);
