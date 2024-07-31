@@ -58,4 +58,10 @@ public class LoanDAO {
         Query query = em.createNativeQuery(sql);
         return (Object[]) query.getSingleResult();
     }
+    
+    public List<Loan> getPendingLoansByUserEmail(String email) {
+        return em.createQuery("SELECT l FROM Loan l WHERE l.user.email = :email AND l.status = 'loaned'", Loan.class)
+                 .setParameter("email", email)
+                 .getResultList();
+    }
 }

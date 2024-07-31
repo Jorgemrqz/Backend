@@ -30,7 +30,7 @@ public class Book implements Serializable {
     private String author;
 
     @Column(name = "b_availability")
-    private String availability; // Cambiado a String con estados "available", "loaned", "reserved"
+    private String availability = "available"; // Valor predeterminado
 
     // Getters y setters
     public int getId() {

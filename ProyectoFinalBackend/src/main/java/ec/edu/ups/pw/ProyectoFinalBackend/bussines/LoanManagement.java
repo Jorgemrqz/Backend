@@ -41,7 +41,8 @@ public class LoanManagement {
         }
 
         // Verificar si el libro está disponible
-        if (!book.getAvailability().equals("available")) {
+        String bookAvailability = book.getAvailability();
+        if (bookAvailability == null || !bookAvailability.equals("available")) {
             throw new RuntimeException("El libro no está disponible para préstamo.");
         }
 
@@ -86,4 +87,10 @@ public class LoanManagement {
     public Object[] getTopBook() {
         return this.loanDAO.getTopBook();
     }
+    
+    public List<Loan> getPendingLoansByUserEmail(String email) {
+        return this.loanDAO.getPendingLoansByUserEmail(email);
+    }
+    
+    
 }

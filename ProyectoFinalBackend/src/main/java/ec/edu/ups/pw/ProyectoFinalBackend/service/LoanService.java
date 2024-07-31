@@ -96,4 +96,17 @@ public class LoanService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Error al obtener el reporte de libro: " + e.getMessage()).build();
         }
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/user/pending/{email}")
+    public Response getPendingLoansByUserEmail(@PathParam("email") String email) {
+        try {
+            List<Loan> pendingLoans = this.lm.getPendingLoansByUserEmail(email);
+            return Response.ok(pendingLoans).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Error al obtener los préstamos pendientes del usuario: " + e.getMessage()).build();
+        }
+    }
+
 }
