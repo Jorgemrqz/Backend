@@ -47,9 +47,15 @@ public class LoanDAO {
     }
 
     // Método para obtener el libro que ha sido más veces prestado
+ // Método para obtener el libro que ha sido más veces prestado (PostgreSQL)
     public Object[] getTopBook() {
-        Query query = em.createQuery("SELECT l.book.name, COUNT(l) as totalLoans FROM Loan l GROUP BY l.book.id ORDER BY totalLoans DESC")
-                        .setMaxResults(1);
+        String sql = "SELECT b.b_name, COUNT(l.l_id) as totalLoans " +
+                     "FROM Loans l " +
+                     "JOIN Books b ON l.l_book_id = b.b_id " +
+                     "GROUP BY b.b_name " +
+                     "ORDER BY totalLoans DESC " +
+                     "LIMIT 1";
+        Query query = em.createNativeQuery(sql);
         return (Object[]) query.getSingleResult();
     }
 }

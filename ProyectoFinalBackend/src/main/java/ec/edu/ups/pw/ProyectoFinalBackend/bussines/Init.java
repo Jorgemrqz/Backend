@@ -1,5 +1,7 @@
 package ec.edu.ups.pw.ProyectoFinalBackend.bussines;
 
+import java.util.TimeZone;
+
 import ec.edu.ups.pw.ProyectoFinalBackend.dao.BookDAO;
 import ec.edu.ups.pw.ProyectoFinalBackend.dao.UserDAO;
 import ec.edu.ups.pw.ProyectoFinalBackend.enums.Rol;
@@ -22,6 +24,8 @@ public class Init {
 	
 	@PostConstruct
 	public void init() {
+		
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Guayaquil"));
 		
 		User u = new User();
 		u.setEmail("robertoart76x@gmail.com");
