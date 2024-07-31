@@ -72,4 +72,28 @@ public class LoanService {
             return Response.status(Response.Status.BAD_REQUEST).entity("Error al obtener los préstamos del usuario: " + e.getMessage()).build();
         }
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/report/top-user")
+    public Response getTopUser() {
+        try {
+            Object[] topUser = this.lm.getTopUser();
+            return Response.ok(topUser).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Error al obtener el reporte de usuario: " + e.getMessage()).build();
+        }
+    }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/report/top-book")
+    public Response getTopBook() {
+        try {
+            Object[] topBook = this.lm.getTopBook();
+            return Response.ok(topBook).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Error al obtener el reporte de libro: " + e.getMessage()).build();
+        }
+    }
 }

@@ -78,4 +78,12 @@ public class LoanManagement {
         }
         return loanDAO.getLoansByUserEmail(email);
     }
+    
+    public Object[] getTopUser() {
+        return this.loanDAO.getTopUser();
+    }
+
+    public Object[] getTopBook() {
+        return this.loanDAO.getTopBook();
+    }
 }
